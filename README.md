@@ -1,7 +1,7 @@
 # Python Exercises
 
-![Exercism Logo](Exercism.JPG)  
-![Pyhton](python.JPG)
+![Exercism Logo](image/Exercism.JPG)  
+![Pyhton](image/python.JPG)
 
 
 This repository contains a collection of Python exercises, ranging from basic concepts to more advanced topics like functions and classes.  
@@ -23,11 +23,13 @@ Each exercise has a Readme file with explanations about what need to be done. Al
 - `Help`: There are Links for configure the Pytest and submit theexercise for valitation in the Site
 - `Hint`: Some exercises have a Hints file, which gives more information about the topic e resolution.
 
-![Photo](folder_files.JPG)
+![Photo](image/folder_files.JPG)
 
 ## License
 
 This project is distributed under the [MIT License](LICENSE). Feel free to use, modify, and share the exercises as desired. 
-![Banner](Banner.png)
+Enjoy practicing and learning with the Python exercises in this repository!  
+
+![Banner](image/Banner.png)
 
 Enjoy practicing and learning with the Python exercises in this repository!
