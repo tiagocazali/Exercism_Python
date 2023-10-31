@@ -1,4 +1,4 @@
-def find_fewest_coins(coins, target):
+def change(coins, target):
     # Inicialize uma tabela para armazenar o número mínimo de moedas e as moedas escolhidas.
     dp = [float('inf')] * (target + 1)
     dp[0] = 0  # Para dar troco de 0, não é necessário nenhuma moeda.
@@ -17,8 +17,11 @@ def find_fewest_coins(coins, target):
         coins_used.append(coin)
         target -= coin
 
-    return coins_used
+    return dp[-1], coins_used
 
-
-x = find_fewest_coins([1, 4, 15, 20, 50], 23)
-print(x)
+# Exemplo de uso:
+moedas = [1, 3, 4]
+troco = 10
+qtd_moedas, moedas_usadas = change(moedas, troco)
+print(f"A menor quantidade de moedas para dar troco de {troco} é {qtd_moedas}.")
+print("Moedas usadas:", moedas_usadas)
