@@ -6,13 +6,15 @@ def classify(number):
     """
     if number <=0:
         raise ValueError("Classification is only possible for positive integers.")
-    divisor = []
+    # divisor = []
+    soma = 0
     for x in range(1, int(number/2)+1):
         if number % x == 0:
-            divisor.append(x)
+            # divisor.append(x)
+            soma += x
     
-    if sum(divisor) == number:
+    if soma == number:
         return "perfect"
-    if sum(divisor) < number:
+    if soma < number:
         return "deficient"
     return "abundant"
