@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora Thiago</title>
+  </head>
+  <body>
+    <h1>Calculadora de Troco</h1>
+
+    <label for="moedas">Moedas disponíveis:</label>
+    <input
+      type="text"
+      id="moedas"
+      placeholder="Digite as moedas separadas por vírgula (ex: 100,50,25,10,5,1)"
+    />
+
+    <br /><br />
+
+    <label for="quantia">Quantia a ser paga:</label>
+    <input type="number" id="quantia" placeholder="Digite a quantia" />
+
+    <br /><br />
+
+    <button onclick="calcularTroco()">Calcular Troco</button>
+
+    <h2>Resultado:</h2>
+    <p id="resultado"></p>
+    <p id="moedasUtilizadas"></p>
+
+    <script>
+      function calcularTroco() {
+        let moedasInput = document.getElementById('moedas').value;
+        let quantia = parseInt(document.getElementById('quantia').value);
+        let moedas = moedasInput.split(',').map((moeda) => parseInt(moeda));
+
+        let dp = Array(quantia + 1).fill(Infinity);
+        dp[0] = 0;
+
+        let moedasUsadas = Array(quantia + 1).fill([]);
+
+        for (let i = 1; i <= quantia; i++) {
+          for (let j = 0; j < moedas.length; j++) {
+            if (moedas[j] <= i && dp[i - moedas[j]] + 1 < dp[i]) {
+              dp[i] = dp[i - moedas[j]] + 1;
+              moedasUsadas[i] = [...moedasUsadas[i - moedas[j]], moedas[j]];
+            }
+          }
+        }
+
+        let menorNumeroMoedas = dp[quantia];
+        let moedasUtilizadas = moedasUsadas[quantia];
+
+        document.getElementById('resultado').innerText =
+          'Menor número de moedas para pagar a quantia: ' + menorNumeroMoedas;
+        document.getElementById('moedasUtilizadas').innerText =
+          'Moedas utilizadas: ' + moedasUtilizadas.join(', ');
+      }
+    </script>
+  </body>
+</html>
