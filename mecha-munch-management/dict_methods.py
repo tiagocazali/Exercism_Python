@@ -18,7 +18,7 @@ def read_notes(notes):
     :param notes: iterable of items to add to cart.
     :return: dict - a user shopping cart dictionary.
     """
-    
+    Tiago Cazali
     pass
 
 
