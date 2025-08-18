@@ -8,8 +8,11 @@ def add_item(current_cart, items_to_add):
     :param items_to_add: iterable - items to add to the cart.
     :return: dict - the updated user cart dictionary.
     """
+    for item in items_to_add:
+        # Para cada item, pega a quantidade atual (ou 0 se for novo) e soma 1.
+        current_cart[item] = current_cart.get(item, 0) + 1
 
-    pass
+    return current_cart
 
 
 def read_notes(notes):
@@ -18,8 +21,12 @@ def read_notes(notes):
     :param notes: iterable of items to add to cart.
     :return: dict - a user shopping cart dictionary.
     """
-    Tiago Cazali
-    pass
+    new_cart = {}
+    
+    for item in notes:
+        new_cart[item] = new_cart.get(item, 0) + 1
+    
+    return new_cart
 
 
 def update_recipes(ideas, recipe_updates):
@@ -29,8 +36,9 @@ def update_recipes(ideas, recipe_updates):
     :param recipe_updates: dict - dictionary with updates for the ideas section.
     :return: dict - updated "recipe ideas" dict.
     """
-
-    pass
+    for name, ingredients in recipe_updates:
+        ideas.update({name: ingredients})
+    return ideas
 
 
 def sort_entries(cart):
@@ -39,8 +47,8 @@ def sort_entries(cart):
     :param cart: dict - a users shopping cart dictionary.
     :return: dict - users shopping cart sorted in alphabetical order.
     """
-
-    pass
+    return dict(sorted(cart.items()))
+    
 
 
 def send_to_store(cart, aisle_mapping):
@@ -51,7 +59,12 @@ def send_to_store(cart, aisle_mapping):
     :return: dict - fulfillment dictionary ready to send to store.
     """
 
-    pass
+    fulfillment_cart = {}
+    for item, qty in cart.items():
+        aisle, refrigeration = aisle_mapping[item]
+        fulfillment_cart[item] = [qty, aisle, refrigeration]
+    
+    return dict(sorted(fulfillment_cart.items(), reverse=True))
 
 
 def update_store_inventory(fulfillment_cart, store_inventory):
@@ -61,5 +74,12 @@ def update_store_inventory(fulfillment_cart, store_inventory):
     :param store_inventory: dict - store available inventory
     :return: dict - store_inventory updated.
     """
+    for item, quant in fulfillment_cart.items():
+        if item in store_inventory:
+            if store_inventory[item][0] > 0:
+                store_inventory[item][0] -= store_inventory[item][0]
+            else:
+                store_inventory[item][0] = "out of Order"
+                
+    return store_inventory
 
-    pass
